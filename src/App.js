@@ -10,6 +10,7 @@ class App extends Component {
     this.state = {
       question: "hi hi hi",
       answer: "",
+      wrongAnswers: [],
       choicesArray: [],
       chosenAnswer: "",
       clickStatus: "off",
@@ -27,12 +28,27 @@ class App extends Component {
         this.setState({
           question: apiData.results[0].question,
           answer: apiData.results[0].correct_answer,
-          choicesArray: apiData.results[0].incorrect_answers,
+          wrongAnswers: apiData.results[0].incorrect_answers,
 
           choseCorrectAnswer: false
         });
+
+        this.shuffleChoices();
       });
   }
+
+  shuffleChoices = () => {
+    let choiceArray = this.state.wrongAnswers.concat(this.state.answer);
+    console.log(choiceArray);
+    choiceArray = choiceArray.sort((a, b) => {
+      return 0.5 - Math.random();
+    });
+
+    this.setState({
+      choicesArray: choiceArray
+    });
+    console.log(choiceArray);
+  };
 
   handleOptionClick = e => {
     let chosenOption = e.target.textContent;
@@ -63,7 +79,7 @@ class App extends Component {
           </Row>
           <Row>
             <AnswerChoice
-              answerOption={this.state.answer}
+              answerOption={this.state.choicesArray[3]}
               handleClick={this.handleOptionClick}
               chosen_answer={this.state.chosenAnswer}
               revealresult={this.state.choseCorrectAnswer}
