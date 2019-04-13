@@ -72,16 +72,25 @@ class App extends Component {
             <AnswerChoice
               answerOption={this.state.choicesArray[0]}
               handleClick={this.handleOptionClick}
+              chosen_answer={this.state.chosenAnswer}
+              revealresult={this.state.choseCorrectAnswer}
+              click_status={this.state.clickStatus}
             />
           </Row>
           <Row>
             <AnswerChoice
               answerOption={this.state.choicesArray[1]}
               handleClick={this.handleOptionClick}
+              chosen_answer={this.state.chosenAnswer}
+              revealresult={this.state.choseCorrectAnswer}
+              click_status={this.state.clickStatus}
             />
             <AnswerChoice
               answerOption={this.state.choicesArray[2]}
               handleClick={this.handleOptionClick}
+              chosen_answer={this.state.chosenAnswer}
+              revealresult={this.state.choseCorrectAnswer}
+              click_status={this.state.clickStatus}
             />
           </Row>
         </Container>

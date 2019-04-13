@@ -14,10 +14,18 @@ class AnswerChoice extends Component {
       this.props.chosen_answer === this.props.answerOption
     ) {
       return (
-        <Card className="answerWrap " onClick={this.props.handleClick}>
-          <Card.Body className="noPadding bg-green">
-            {this.props.answerOption}
-          </Card.Body>
+        <Card className="answerWrap bg-green " onClick={this.props.handleClick}>
+          <Card.Body className="noPadding">{this.props.answerOption}</Card.Body>
+        </Card>
+      );
+    } else if (
+      this.props.click_status === "on" &&
+      this.props.revealresult === false &&
+      this.props.chosen_answer === this.props.answerOption
+    ) {
+      return (
+        <Card className="answerWrap bg-red " onClick={this.props.handleClick}>
+          <Card.Body className="noPadding">{this.props.answerOption}</Card.Body>
         </Card>
       );
     } else {
