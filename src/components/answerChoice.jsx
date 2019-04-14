@@ -1,30 +1,53 @@
 import React, { Component } from "react";
 import "../App.css";
 import Card from "react-bootstrap/Card";
+import GameOverPopup from "./gameOverPopup";
 
 class AnswerChoice extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
+  isCorrectAnswer = () => {
+    return (
+      this.props.clickStatus === "on" &&
+      this.props.chosenAnswer !== "" &&
+      this.props.answerOption === this.props.correctAnswer
+      // (this.props.revealresult === true ||
+      //   this.props.answerOption === this.props.correctAnswer) ||
+      // this.props.chosenAnswer === this.props.answerOption
+    );
+  };
+
+  isWrongAnswer = () => {
+    return (
+      this.props.clickStatus === "on" &&
+      this.props.revealresult === false &&
+      this.props.chosenAnswer === this.props.answerOption
+    );
+  };
   render() {
-    if (
-      this.props.click_status === "on" &&
-      this.props.revealresult === true &&
-      this.props.chosen_answer === this.props.answerOption
-    ) {
+    if (this.isCorrectAnswer()) {
       return (
-        <Card className="answerWrap bg-green " onClick={this.props.handleClick}>
+        <Card className="answerWrap bg-green ">
           <Card.Body className="noPadding">{this.props.answerOption}</Card.Body>
         </Card>
       );
-    } else if (
-      this.props.click_status === "on" &&
-      this.props.revealresult === false &&
-      this.props.chosen_answer === this.props.answerOption
-    ) {
+    } else if (this.isWrongAnswer()) {
       return (
-        <Card className="answerWrap bg-red " onClick={this.props.handleClick}>
+        <>
+          <Card className="answerWrap bg-red ">
+            <Card.Body className="noPadding">
+              {this.props.answerOption}
+            </Card.Body>
+          </Card>
+          <GameOverPopup />
+        </>
+      );
+    } else if (this.props.clickStatus === "on") {
+      return (
+        <Card className="answerWrap">
           <Card.Body className="noPadding">{this.props.answerOption}</Card.Body>
         </Card>
       );
