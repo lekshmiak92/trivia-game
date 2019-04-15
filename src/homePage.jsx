@@ -36,53 +36,44 @@ class HomePage extends Component {
     this.setState({ nameInput: e.target.value });
   };
 
-  render() {
+  checkForLocalStorage = () => {
     const gameData = JSON.parse(window.localStorage.getItem("trivia"));
     if (!gameData) {
       return (
-        <>
-          <Container className="App">
-            <img src={Logo} className="logo" alt="game logo" />
-            <div className="setMargin">
-              <Link to="/game/">
-                <Button variant="outline-primary">Start Game</Button>
-              </Link>
-            </div>
-            <div>
-              <Link to="/profile/">
-                <Button variant="outline-primary"> Profile</Button>
-              </Link>
-            </div>
-          </Container>
-          <Modal show={this.state.show} centered>
-            <Modal.Header>
-              <Modal.Title>Welcome to TRIVIA</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              What can we call you ?
-              <Form>
-                <Form.Row>
-                  <Col>
-                    <Form.Control
-                      placeholder="Name"
-                      onChange={this.nameInputChange}
-                    />
-                  </Col>
-                </Form.Row>
-              </Form>
-            </Modal.Body>
-            <Modal.Footer>
-              <Link to="/">
-                <Button variant="secondary" onClick={this.handleSubmit}>
-                  Submit
-                </Button>
-              </Link>
-            </Modal.Footer>
-          </Modal>
-        </>
+        <Modal show={this.state.show} centered>
+          <Modal.Header>
+            <Modal.Title>Welcome to TRIVIA</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            What can we call you ?
+            <Form>
+              <Form.Row>
+                <Col>
+                  <Form.Control
+                    placeholder="Name"
+                    onChange={this.nameInputChange}
+                  />
+                </Col>
+              </Form.Row>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Link to="/">
+              <Button variant="secondary" onClick={this.handleSubmit}>
+                Submit
+              </Button>
+            </Link>
+          </Modal.Footer>
+        </Modal>
       );
     } else {
-      return (
+      return null;
+    }
+  };
+
+  render() {
+    return (
+      <>
         <Container className="App">
           <img src={Logo} className="logo" alt="game logo" />
           <div className="setMargin">
@@ -90,14 +81,20 @@ class HomePage extends Component {
               <Button variant="outline-primary">Start Game</Button>
             </Link>
           </div>
-          <div>
+          <div className="setMargin">
             <Link to="/profile/">
               <Button variant="outline-primary"> Profile</Button>
             </Link>
           </div>
+          <div className="setMargin">
+            <Link to="/howToPlay/">
+              <Button variant="outline-primary"> How to Play</Button>
+            </Link>
+          </div>
         </Container>
-      );
-    }
+        {this.checkForLocalStorage()}
+      </>
+    );
   }
 }
 

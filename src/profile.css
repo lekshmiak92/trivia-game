@@ -36,3 +36,9 @@
 .progressCard {
   padding-left: 6%;
 }
+.textAllignLeft {
+  text-align: left;
+}
+li {
+  margin: 2%;
+}

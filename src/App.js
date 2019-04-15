@@ -88,7 +88,6 @@ class App extends Component {
       name: this.state.userName,
       points: this.state.points + this.state.totalPoints
     };
-    console.log("current State:", userData);
 
     window.localStorage.setItem("trivia", JSON.stringify(userData));
   };
