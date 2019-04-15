@@ -1,7 +1,11 @@
 .App {
   text-align: center;
 }
+.logo {
+  width: 35%;
+}
 .quesCard {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: 100%;
   margin: 5% 0 10% 0;
 }
@@ -9,6 +13,7 @@
   width: 48%;
   padding: 1%;
   margin: 1%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 25px;
   float: left;
 }
@@ -38,4 +43,8 @@ span.gamePoints {
 }
 .statistics {
   justify-content: space-evenly;
+}
+
+.setMargin {
+  margin: 2%;
 }

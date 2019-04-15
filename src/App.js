@@ -5,6 +5,7 @@ import Question from "./components/question";
 import AnswerChoice from "./components/answerChoice";
 import NextButton from "./components/nextButton";
 import GameStatistics from "./components/gameStatistics";
+// import GameOverPopup from "./gameOverPopup";
 
 class App extends Component {
   constructor(props) {
@@ -19,15 +20,17 @@ class App extends Component {
       choseCorrectAnswer: false,
       points: 0
     };
+    console.log("inside constructor", this.props);
   }
 
   componentDidMount() {
+    console.log("inside cdm");
     this.getQuestions();
   }
 
   getQuestions = () => {
     fetch(
-      `https://opentdb.com/api.php?amount=1&category=10&difficulty=easy&type=multiple`
+      `https://opentdb.com/api.php?amount=1&category=12&difficulty=easy&type=multiple`
     )
       .then(res => res.json())
       .then(apiData => {
@@ -99,6 +102,7 @@ class App extends Component {
             revealresult={this.state.choseCorrectAnswer}
             clickStatus={this.state.clickStatus}
             correctAnswer={this.state.answer}
+            prophistory={this.props.history}
           />
 
           <AnswerChoice
@@ -108,6 +112,7 @@ class App extends Component {
             revealresult={this.state.choseCorrectAnswer}
             clickStatus={this.state.clickStatus}
             correctAnswer={this.state.answer}
+            prophistory={this.props.history}
           />
 
           <AnswerChoice
@@ -117,6 +122,7 @@ class App extends Component {
             revealresult={this.state.choseCorrectAnswer}
             clickStatus={this.state.clickStatus}
             correctAnswer={this.state.answer}
+            prophistory={this.props.history}
           />
 
           <AnswerChoice
@@ -126,6 +132,7 @@ class App extends Component {
             revealresult={this.state.choseCorrectAnswer}
             clickStatus={this.state.clickStatus}
             correctAnswer={this.state.answer}
+            prophistory={this.props.history}
           />
 
           <NextButton

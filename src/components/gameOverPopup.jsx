@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
 
 class GameOverPopup extends Component {
@@ -8,6 +9,9 @@ class GameOverPopup extends Component {
   }
   handleClose = () => {
     this.setState({ show: false });
+    let gamePath = `/game/${Date.now()}`;
+
+    this.props.prophistory.push(gamePath);
   };
 
   componentDidMount() {
@@ -25,9 +29,12 @@ class GameOverPopup extends Component {
           </Modal.Header>
           <Modal.Body>OOPS! You lost the winstreak !</Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleClose}>
-              Home
-            </Button>
+            <Link to="/">
+              <Button variant="secondary" onClick={this.handleClose}>
+                Home
+              </Button>
+            </Link>
+
             <Button variant="primary" onClick={this.handleClose}>
               New game
             </Button>
