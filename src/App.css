@@ -48,3 +48,8 @@ span.gamePoints {
 .setMargin {
   margin: 2%;
 }
+.btn-primary:disabled {
+  color: #fff;
+  background-color: #b7bdc3;
+  border-color: #007bff;
+}

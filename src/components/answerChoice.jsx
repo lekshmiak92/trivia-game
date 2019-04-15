@@ -42,7 +42,11 @@ class AnswerChoice extends Component {
               {this.props.answerOption}
             </Card.Body>
           </Card>
-          <GameOverPopup prophistory={this.props.prophistory} />
+          <GameOverPopup
+            prophistory={this.props.prophistory}
+            points={this.props.points}
+            setLocalStorage={this.props.setLocalStorage}
+          />
         </>
       );
     } else if (this.props.clickStatus === "on") {

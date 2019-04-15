@@ -9,9 +9,11 @@ class GameOverPopup extends Component {
   }
   handleClose = () => {
     this.setState({ show: false });
-    let gamePath = `/game/${Date.now()}`;
+  };
 
-    this.props.prophistory.push(gamePath);
+  handleNew = () => {
+    this.handleClose();
+    this.props.setLocalStorage();
   };
 
   componentDidMount() {
@@ -27,17 +29,16 @@ class GameOverPopup extends Component {
           <Modal.Header>
             <Modal.Title>Game Over</Modal.Title>
           </Modal.Header>
-          <Modal.Body>OOPS! You lost the winstreak !</Modal.Body>
+          <Modal.Body>
+            OOPS! You lost the winstreak !<br />
+            You earned {this.props.points} Points
+          </Modal.Body>
           <Modal.Footer>
             <Link to="/">
-              <Button variant="secondary" onClick={this.handleClose}>
+              <Button variant="secondary" onClick={this.handleNew}>
                 Home
               </Button>
             </Link>
-
-            <Button variant="primary" onClick={this.handleClose}>
-              New game
-            </Button>
           </Modal.Footer>
         </Modal>
       </>
